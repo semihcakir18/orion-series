@@ -1,27 +1,13 @@
 .card-list {
-  display: flex; /* Arrange items in a row */
-  overflow-x: hidden; /* Enable horizontal scrolling */
-  scrollbar-width: none; /* Hide scrollbar (Firefox) */
-  -ms-overflow-style: none; /* Hide scrollbar (IE/Edge) */
-  gap: 10px; /* Space between cards */
-  padding: 10px 0; /* Optional padding for aesthetics */
+  display: grid;
+  grid-template-columns: repeat(11, 1fr); /* Creates 4 columns */
+  grid-template-rows: repeat(5, 1fr); /* Creates 5 rows */
+  gap: 20px; /* Space between cards */
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px; /* Optional: limits maximum width */
+  margin: 0 auto; /* Centers the grid */
 }
-
-.card-list::-webkit-scrollbar {
-  display: none; /* Hide scrollbar (WebKit/Browsers like Chrome, Safari) */
-}
-
-.title-cards {
-  overflow-x: hidden;
-}
-
-.card-list::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  background: transparent;
-}
-.title-cards::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  background: transparent;
+h1 {
+  color: antiquewhite;
 }

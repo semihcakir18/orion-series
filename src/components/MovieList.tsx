@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchMovies, fetchMovieDetails, fetchIMDbRating } from "../Service";
+import { fetchRecentMovies, fetchMovieDetails, fetchIMDbRating } from "../Service";
 import MovieCard from "./MovieCard";
 import "./MovieList.css";
 
@@ -10,7 +10,7 @@ const MovieList: React.FC = () => {
 
   useEffect(() => {
     const loadMovies = async () => {
-      const movieList = await fetchMovies();
+      const movieList = await fetchRecentMovies();
       const detailedMovies = await Promise.all(
         movieList.map(async (movie: any) => {
           const details = await fetchMovieDetails(movie.id);
@@ -29,8 +29,8 @@ const MovieList: React.FC = () => {
   }, []);
 
   return (
-    <div className="title-cards">
-      <h1>Son 1 Yıldaki Filmler</h1>
+    <>
+      <h1>Son Zamanlardaki Popüler Filmler</h1>
       <div className="card-list">
         {movies.map((movie) => (
           <MovieCard
@@ -42,7 +42,7 @@ const MovieList: React.FC = () => {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

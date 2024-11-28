@@ -1,17 +1,16 @@
 .card {
-  display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
   padding: 10px;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
-  font-size: smaller;
-  width: 12rem;
-  height: 18rem;
+  font-size: xx-small; /* Smaller font size */
+  width: 6rem;
+  height: 9rem;
   cursor: pointer;
   color: white;
-  box-shadow: 0 5px 15px 2.5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2.5px 7.5px 1.25px rgba(0, 0, 0, 0.1);
 
   img {
     position: absolute;
@@ -21,13 +20,13 @@
     top: 0;
     left: 0;
     transition: filter 1s ease;
-    border-radius: 5px;
+    border-radius: 2.5px;
   }
 
   h2 {
     position: absolute;
-    inset: auto auto 15px 15px;
-    margin-bottom: 15px;
+    inset: auto auto 7.5px 7.5px;
+    margin-bottom: 7.5px;
     transition: inset 0.3s 0.3s ease-out;
     text-transform: uppercase;
   }
@@ -45,19 +44,19 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 9;
-    max-height: calc(1.2em * 11);
-    inset: auto auto 40px 15px;
+    -webkit-line-clamp: 8;
+    max-height: calc(1.2em * 8);
+    inset: auto auto 20px 7.5px;
   }
 
   h4 {
-    margin-bottom: -10px;
-    inset: auto auto 20px 15px;
+    margin-bottom: -5px;
+    inset: auto auto 10px 7.5px;
     text-decoration: none;
   }
 
   &:hover h2 {
-    inset: auto auto 220px 15px;
+    inset: auto auto 110px 7.5px;
     transition: inset 0.3s ease-out;
   }
 
