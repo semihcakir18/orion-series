@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { fetchMovies, fetchMovieDetails, fetchIMDbRating } from "./Service";
-import MovieCard from "./components/MovieCard";
+import { fetchMovies, fetchMovieDetails, fetchIMDbRating } from "../Service";
+import MovieCard from "./MovieCard";
+import "./MovieList.css";
 
 const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 
@@ -14,10 +15,10 @@ const MovieList: React.FC = () => {
         movieList.map(async (movie: any) => {
           const details = await fetchMovieDetails(movie.id);
           const imdbRating = await fetchIMDbRating(movie.title);
-          
+
           return {
             ...details,
-            imdbRating: imdbRating
+            imdbRating: imdbRating,
           };
         })
       );
@@ -28,9 +29,9 @@ const MovieList: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="title-cards">
       <h1>Son 1 Yıldaki Filmler</h1>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <div className="card-list">
         {movies.map((movie) => (
           <MovieCard
             key={movie.id}

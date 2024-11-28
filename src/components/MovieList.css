@@ -1,0 +1,27 @@
+.card-list {
+  display: flex; /* Arrange items in a row */
+  overflow-x: hidden; /* Enable horizontal scrolling */
+  scrollbar-width: none; /* Hide scrollbar (Firefox) */
+  -ms-overflow-style: none; /* Hide scrollbar (IE/Edge) */
+  gap: 10px; /* Space between cards */
+  padding: 10px 0; /* Optional padding for aesthetics */
+}
+
+.card-list::-webkit-scrollbar {
+  display: none; /* Hide scrollbar (WebKit/Browsers like Chrome, Safari) */
+}
+
+.title-cards {
+  overflow-x: hidden;
+}
+
+.card-list::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  background: transparent;
+}
+.title-cards::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  background: transparent;
+}

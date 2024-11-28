@@ -1,10 +1,9 @@
-import MainComponent from "./MainComponent";
-import MovieList from "./MovieList";
+import MainComponent from "./components/MainComponent";
+
 
 function App() {
   return (
     <>
-
       <MainComponent />
     </>
   );
