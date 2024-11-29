@@ -1,13 +1,18 @@
 .card-list {
   display: grid;
-  grid-template-columns: repeat(11, 1fr); /* Creates 4 columns */
-  grid-template-rows: repeat(5, 1fr); /* Creates 5 rows */
-  gap: 20px; /* Space between cards */
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
   padding: 20px;
   width: 100%;
-  max-width: 1200px; /* Optional: limits maximum width */
-  margin: 0 auto; /* Centers the grid */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 h1 {
-  color: antiquewhite;
+  color: #000532;
+}
+.main {
+  margin-left: 50px;
+  align-items: center;
+  justify-content: center;
 }

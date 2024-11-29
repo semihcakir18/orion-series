@@ -1,30 +1,24 @@
 import "./MovieCard.css";
 interface MovieCardProps {
-  key: number;
+  id: number;
   title: string;
   description: string;
   imageUrl: string;
-  rating?: number;
+  rating: number;
+  onCardClick: (id: number) => void;
 }
 
-const MovieCard = ({
-  title,
-  description,
-  imageUrl,
-  rating,
-}: MovieCardProps) => {
+const MovieCard: React.FC<MovieCardProps> = ({ id, title, description, imageUrl, rating, onCardClick }) => {
   return (
-
-        <div className="card">
-          <img src={imageUrl} alt={title} />
-          <div className="card-content">
-            <h2>{title}</h2>
-            <br />
-            <p>{description}</p>
-            {rating && <h4>IMDb Rating: {rating}</h4>}
-          </div>
-        </div>
-
+    <div className="card" onClick={() => onCardClick(id)}>
+      <img src={imageUrl} alt={title} />
+      <div className="card-content">
+        <h2>{title}</h2>
+        <br />
+        <p>{description}</p>
+        <h4>IMDb Rating: {rating}</h4>
+      </div>
+    </div>
   );
 };
 

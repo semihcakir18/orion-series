@@ -1,0 +1,11 @@
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  scroll-snap-stop: always;
+}
+
+section {
+  height: 85vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
