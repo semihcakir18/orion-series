@@ -1,12 +1,6 @@
 import "./MovieCard.css";
-interface MovieCardProps {
-  id: number;
-  title: string;
-  description: string;
-  imageUrl: string;
-  rating: number;
-  onCardClick: (id: number) => void;
-}
+import {MovieCardProps} from "../Interfaces";
+
 
 const MovieCard: React.FC<MovieCardProps> = ({ id, title, description, imageUrl, rating, onCardClick }) => {
   return (

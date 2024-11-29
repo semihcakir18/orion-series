@@ -3,6 +3,29 @@ const OMDB_API_KEY = "c7df7326";
 const API_KEY = "f246fdbd97ae1eb6906fd392248b9ffa";
 const BASE_URL = "https://api.themoviedb.org/3";
 
+//
+// FİLM İÇİN 
+//
+export const fetchTopRatedMovies = async (page: number) => {
+
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/top_rated`, {
+      params: {
+        api_key: API_KEY,
+        language: "en-US",
+        page: page,
+      },
+    });
+
+    const movies = response.data.results.filter(
+      (movie: any) => movie.poster_path !== null
+    );
+
+    return movies;
+  } catch (error) {
+    console.error("Top Rated Film verilerini çekerken hata oluştu:", error);
+  }
+};
 export const fetchRecentMovies = async (page: number) => {
   const today = new Date();
   const lastYear = new Date();
@@ -32,6 +55,7 @@ export const fetchRecentMovies = async (page: number) => {
     console.error("Film verilerini çekerken hata oluştu:", error);
   }
 };
+//
 export const fetchMovieDetails = async (movieId: number) => {
   try {
     const response = await axios.get(`${BASE_URL}/movie/${movieId}`, {
@@ -47,7 +71,37 @@ export const fetchMovieDetails = async (movieId: number) => {
     return null;
   }
 };
-
+//
+export const fetchMovieVideos = async (movieId: number) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/${movieId}/videos`, {
+      params: {
+        api_key: API_KEY,
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error(`Fragmanları çekerken hata (ID: ${movieId}):`, error);
+  }
+};
+//
+export const fetchIMDbRating = async (movieName: string) => {
+  try {
+    const response = await axios.get(`https://www.omdbapi.com/`, {
+      params: {
+        apiKey: OMDB_API_KEY,
+        t: movieName,
+      },
+    });
+    return response.data.imdbRating;
+  } catch (error) {
+    console.error("IMDb rating alırken hata", error);
+    return null;
+  }
+};
+//
+// DİZİ İÇİN
+//
 export const fetchRecentSeries = async (page: number) => {
   const today = new Date();
   const lastYear = new Date();
@@ -95,30 +149,18 @@ export const fetchSerieDetails = async (serieId: number) => {
   }
 };
 
-export const fetchMovieVideos = async (movieId: number) => {
+
+export const fetchSerieVideos = async (serieId: number) => {
   try {
-    const response = await axios.get(`${BASE_URL}/movie/${movieId}/videos`, {
+    const response = await axios.get(`${BASE_URL}/tv/${serieId}/videos`, {
       params: {
         api_key: API_KEY,
       },
     });
     return response.data.results;
   } catch (error) {
-    console.error(`Fragmanları çekerken hata (ID: ${movieId}):`, error);
+    console.error(`Fragmanları çekerken hata (ID: ${serieId}):`, error);
   }
 };
 
-export const fetchIMDbRating = async (movieName: string) => {
-  try {
-    const response = await axios.get(`https://www.omdbapi.com/`, {
-      params: {
-        apiKey: OMDB_API_KEY,
-        t: movieName,
-      },
-    });
-    return response.data.imdbRating;
-  } catch (error) {
-    console.error("IMDb rating alırken hata", error);
-    return null;
-  }
-};
+

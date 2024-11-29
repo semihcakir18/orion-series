@@ -9,7 +9,8 @@
   margin: 0 auto;
 }
 h1 {
-  color: #01073b;
+  /* color: #01073b; */
+  color: beige;
 }
 .main {
   margin-left: 50px;
