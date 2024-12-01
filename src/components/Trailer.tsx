@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchMovieVideos, fetchSerieVideos } from "../Service";
 import Banner from "../assets/banner.png";
-
-interface TrailerProps {
-  movieID: number | null;
-}
+import {TrailerProps} from "../Interfaces";
 
 const Trailer: React.FC<TrailerProps> = ({ movieID }) => {
   const [videoKey, setVideoKey] = useState<string | null>(null);

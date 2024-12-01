@@ -1,8 +1,7 @@
 import MovieList from "./MovieList";
 import Trailer from "./Trailer";
-import "./MainComponent.css";
 import { useState } from "react";
-
+import "./MainComponent.css";
 export default function MainComponent() {
   const [movieID, setMovieID] = useState<number>(0);
 
@@ -21,3 +20,9 @@ export default function MainComponent() {
     </div>
   );
 }
+
+// Movie List switch case ile yapılabilir.
+// Header yapıp bir kategori dropdownu ile özel sayfa yapılabilir.
+// Cartlar biraz daha büyüyebilir 
+// Listeler çoğalabilir.
+//css leri ayır

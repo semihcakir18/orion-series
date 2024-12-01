@@ -1,6 +1,5 @@
 import axios from "axios";
-const OMDB_API_KEY = "c7df7326";
-const API_KEY = "f246fdbd97ae1eb6906fd392248b9ffa";
+import { API_KEY, OMDB_API_KEY } from "./ApiKeys";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 //
@@ -26,6 +25,7 @@ export const fetchTopRatedMovies = async (page: number) => {
     console.error("Top Rated Film verilerini çekerken hata oluştu:", error);
   }
 };
+//
 export const fetchRecentMovies = async (page: number) => {
   const today = new Date();
   const lastYear = new Date();

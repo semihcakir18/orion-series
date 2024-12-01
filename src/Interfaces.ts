@@ -11,3 +11,6 @@ export interface MovieListProps {
   movieID: number;
   setMovieID: React.Dispatch<React.SetStateAction<number>>;
 }
+export interface TrailerProps {
+  movieID: number | null;
+}

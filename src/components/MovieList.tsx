@@ -12,9 +12,11 @@ import "./MovieList.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { MovieListProps } from "../Interfaces";
+
+
 const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 
-const MovieList: React.FC<MovieListProps> = ({ type, movieID, setMovieID }) => {
+const MovieList = ({ type, setMovieID }: MovieListProps) => {
   const [items, setItems] = useState<any[]>([]);
   const [page, setPage] = useState<number>(1);
 
@@ -29,6 +31,7 @@ const MovieList: React.FC<MovieListProps> = ({ type, movieID, setMovieID }) => {
     value: number
   ) => {
     setPage(value);
+    document.body.style.backgroundColor = "#a18a6f";
   };
 
   useEffect(() => {
@@ -61,7 +64,7 @@ const MovieList: React.FC<MovieListProps> = ({ type, movieID, setMovieID }) => {
     };
 
     loadItems();
-  }, [page, type]);
+  }, [page]);
 
   const title =
     type === "top-rated"
