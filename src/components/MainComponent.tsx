@@ -1,7 +1,7 @@
 import MovieList from "./MovieList";
 import Trailer from "./Trailer";
 import { useState } from "react";
-import "./MainComponent.css";
+import "../Styles/MainComponent.css";
 export default function MainComponent() {
   const [movieID, setMovieID] = useState<number>(0);
 
@@ -12,9 +12,11 @@ export default function MainComponent() {
         <MovieList type="movie" movieID={movieID} setMovieID={setMovieID} />
       </section>
       <section>
+        <br />
         <MovieList type="top-rated" movieID={movieID} setMovieID={setMovieID} />
       </section>
       <section>
+        <br />
         <MovieList type="serie" movieID={movieID} setMovieID={setMovieID} />
       </section>
     </div>
@@ -23,6 +25,6 @@ export default function MainComponent() {
 
 // Movie List switch case ile yapılabilir.
 // Header yapıp bir kategori dropdownu ile özel sayfa yapılabilir.
-// Cartlar biraz daha büyüyebilir 
+// Cartlar biraz daha büyüyebilir
 // Listeler çoğalabilir.
-//css leri ayır
+// css leri ayır

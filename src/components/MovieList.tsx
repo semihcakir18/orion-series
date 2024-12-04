@@ -3,22 +3,52 @@ import {
   fetchRecentMovies,
   fetchMovieDetails,
   fetchIMDbRating,
-  fetchRecentSeries,
-  fetchSerieDetails,
   fetchTopRatedMovies,
-} from "../Service";
+} from "../Services/Movie";
+import { fetchRecentSeries, fetchSerieDetails } from "../Services/Serie";
 import MovieCard from "./MovieCard";
-import "./MovieList.css";
+import "../Styles/MovieList.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { MovieListProps } from "../Interfaces";
-
 
 const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 
 const MovieList = ({ type, setMovieID }: MovieListProps) => {
   const [items, setItems] = useState<any[]>([]);
   const [page, setPage] = useState<number>(1);
+  const [apiPage, setApiPage] = useState<number>(1);
+  const [shown, setShown] = useState<number>(7);
+  const [count, setCount] = useState<number>(12);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 1480 && window.innerWidth > 1320) {
+        setShown(6);
+        setCount(24);
+      } else if (window.innerWidth <= 1320 && window.innerWidth > 1160) {
+        setShown(5);
+        setCount(28);
+      } else if (window.innerWidth <= 1160 && window.innerWidth > 1000) {
+        setShown(4);
+        setCount(36);
+      } else if (window.innerWidth <= 1000 && window.innerWidth > 768) {
+        setShown(3);
+        setCount(48);
+      } else if (window.innerWidth <= 768) {
+        setShown(2);
+        setCount(72);
+      } else {
+        setShown(7);
+        setCount(12);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleCardClick = (id: number) => {
     setMovieID(id);
@@ -38,12 +68,12 @@ const MovieList = ({ type, setMovieID }: MovieListProps) => {
     const loadItems = async () => {
       let itemList;
       if (type === "top-rated") {
-        itemList = await fetchTopRatedMovies(page);
+        itemList = await fetchTopRatedMovies(apiPage);
       } else {
         itemList =
           type === "movie"
-            ? await fetchRecentMovies(page)
-            : await fetchRecentSeries(page);
+            ? await fetchRecentMovies(apiPage)
+            : await fetchRecentSeries(apiPage);
       }
 
       const detailedItems = await Promise.all(
@@ -62,7 +92,8 @@ const MovieList = ({ type, setMovieID }: MovieListProps) => {
       );
       setItems(detailedItems);
     };
-
+    setApiPage(Math.floor(page / Math.ceil(20 / shown)) + 1);
+    console.log(apiPage);
     loadItems();
   }, [page]);
 
@@ -74,42 +105,48 @@ const MovieList = ({ type, setMovieID }: MovieListProps) => {
       : "Popüler Diziler";
   return (
     <>
-      <div className="main">
+      <div className="row">
         <h1>{title}</h1>
-        <div className="card-list">
-          {items.map((item) => (
-            <MovieCard
-              key={item.id}
-              id={item.id}
-              title={item.title || item.name}
-              description={item.overview || "null"}
-              imageUrl={`${BASE_IMAGE_URL}${item.poster_path}`}
-              rating={item.imdbRating}
-              onCardClick={handleCardClick}
-            />
-          ))}
-        </div>
-        <Stack>
-          <Pagination
-            sx={{
-              "& .MuiPaginationItem-root": {
-                color: "rgb(173, 12, 12)",
-                "&.Mui-selected": {
-                  outlineColor: "lightblue",
-                },
-                "&:hover": {
-                  backgroundColor: "lightblue",
-                },
-              },
-            }}
-            count={5}
-            page={page}
-            onChange={handlePageChange}
-            variant="outlined"
-            color="secondary"
-          />
-        </Stack>
+        <div className="row_posters">
+          {items
+            .slice(
+              ((page - 1) % Math.ceil(20 / shown)) * shown,
+              ((page - 1) % Math.ceil(20 / shown)) * shown + shown
+            )
+            .map((item) => (
+              <MovieCard
+                key={item.id}
+                id={item.id}
+                title={item.title || item.name}
+                description={item.overview || "null"}
+                imageUrl={`${BASE_IMAGE_URL}${item.poster_path}`}
+                rating={item.imdbRating}
+                onCardClick={handleCardClick}
+              />
+            ))}
+        </div>{" "}
       </div>
+      <br />
+      <Stack>
+        <Pagination
+          sx={{
+            "& .MuiPaginationItem-root": {
+              color: "rgb(173, 12, 12)",
+              "&.Mui-selected": {
+                outlineColor: "lightblue",
+              },
+              "&:hover": {
+                backgroundColor: "lightblue",
+              },
+            },
+          }}
+          count={count}
+          page={page}
+          onChange={handlePageChange}
+          variant="outlined"
+          color="secondary"
+        />
+      </Stack>
     </>
   );
 };

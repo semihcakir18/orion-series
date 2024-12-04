@@ -1,0 +1,18 @@
+.row_posters {
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  align-items: center;
+  justify-content: center;
+  max-width: 100svw;
+}
+
+h1 {
+  /* color: #01073b; */
+  color: beige;
+}
+.row {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin-top: 110px;
+}

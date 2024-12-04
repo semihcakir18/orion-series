@@ -1,8 +1,14 @@
-import "./MovieCard.css";
-import {MovieCardProps} from "../Interfaces";
+import "../Styles/MovieCard.css";
+import { MovieCardProps } from "../Interfaces";
 
-
-const MovieCard: React.FC<MovieCardProps> = ({ id, title, description, imageUrl, rating, onCardClick }) => {
+const MovieCard: React.FC<MovieCardProps> = ({
+  id,
+  title,
+  description,
+  imageUrl,
+  rating,
+  onCardClick,
+}) => {
   return (
     <div className="card" onClick={() => onCardClick(id)}>
       <img src={imageUrl} alt={title} />
